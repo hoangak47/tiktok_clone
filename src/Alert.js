@@ -1,5 +1,4 @@
-function Alert() {
+const Alert = () => {
     alert("Hello World");
 }
-
 export default Alert;
