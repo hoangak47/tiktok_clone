@@ -1,5 +1,14 @@
+import classNames from 'classnames/bind';
+import styles from './SlideBar.module.scss';
+
+const cx = classNames.bind(styles);
+
 function SlideBar() {
-    return <h1>SlideBar</h1>;
+    return (
+        <aside className={cx('wrapper')}>
+            <h1>SlideBar</h1>
+        </aside>
+    );
 }
 
 export default SlideBar;
