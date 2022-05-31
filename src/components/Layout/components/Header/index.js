@@ -1,9 +1,10 @@
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import images from '~/asset/images';
+import Button from '~/components/Button';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faPlus, faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 // import Tippy from '@tippyjs/react';
 import Tippy from '@tippyjs/react/headless'; // different import path!
@@ -31,7 +32,7 @@ function Header() {
             <div className={cx('inner')}>
                 <img src={images.logo} alt="logo" />
                 <Tippy
-                    interactive
+                    interactive={true}
                     render={(attrs) => (
                         <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                             <PopperWrapper>
@@ -57,7 +58,13 @@ function Header() {
                         </button>
                     </div>
                 </Tippy>
-                <div className={cx('action')}></div>
+                <div className={cx('action')}>
+                    <Button tran>
+                        <FontAwesomeIcon className={cx('icon-plus')} icon={faPlus} />
+                        <span>Upload</span>
+                    </Button>
+                    <Button primary>Log in</Button>
+                </div>
             </div>
         </header>
     );
