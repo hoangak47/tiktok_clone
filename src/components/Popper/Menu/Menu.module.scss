@@ -11,12 +11,17 @@
     width: 100%;
     display: flex;
     justify-content: flex-start;
-    color: #575860;
+    color: var(--default-color-text-secondary);
     padding: 11px 14px;
     line-height: 1.1;
 
     &:hover {
         background-color: rgba(22, 24, 35, 0.03);
+    }
+
+    &.separator {
+        border-top: 1px solid rgb(87 88 96 / 21%);
+        border-radius: unset;
     }
 }
 

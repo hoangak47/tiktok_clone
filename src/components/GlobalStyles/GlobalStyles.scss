@@ -8,7 +8,7 @@
     --default-layout-header-height: 60px;
     --default-layout-width: 1150px;
     --default-color-text-primary: #000;
-    --default-color-text-secondary: #ccc;
+    --default-color-text-secondary: #161832;
 }
 
 * {
@@ -37,4 +37,26 @@ button,
 
 a[href] {
     text-decoration: none;
+}
+
+body {
+    .tippy-box {
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1.6rem;
+        line-height: 2.2rem;
+        background-color: rgba(84, 84, 84, 0.92);
+    }
+
+    .tippy-arrow {
+        color: rgba(84, 84, 84, 0.92);
+    }
+
+    .tippy-box[data-placement^='bottom'] > .tippy-arrow:before {
+        top: -8px;
+    }
+
+    .tippy-content {
+        padding: 8px 9px;
+    }
 }

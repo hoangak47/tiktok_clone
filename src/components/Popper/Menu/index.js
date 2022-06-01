@@ -42,6 +42,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
             interactive={true}
             placement="top-start"
             delay={[0, 1000]}
+            offset={[12, 0]}
             render={(attrs) => (
                 <div className={cx('menu-lists')} tabIndex="-1" {...attrs}>
                     <PopperWrapper className={cx('menu-bottom')}>
@@ -57,6 +58,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
                     </PopperWrapper>
                 </div>
             )}
+            onHide={() => setHistory((prev) => prev.slice(0, 1))}
         >
             {children}
         </Tippy>
