@@ -22,6 +22,7 @@ import { useState } from 'react';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem/AccountItem';
 import Menu from '~/components/Popper/Menu';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -29,6 +30,21 @@ const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faLanguage} />,
         title: 'English',
+        children: {
+            title: 'Language',
+            data: [
+                {
+                    title: 'English',
+                    code: 'en',
+                    type: 'language',
+                },
+                {
+                    title: 'Vietnamese',
+                    code: 'vi',
+                    type: 'language',
+                },
+            ],
+        },
     },
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -50,10 +66,16 @@ function Header() {
         // }
     };
     // console.log(searchResult);
+
+    const handleMenuChange = (menuItem) => {
+        console.log(menuItem);
+    };
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <img src={images.logo} alt="logo" />
+                <Link to="/">
+                    <img src={images.logo} alt="logo" />
+                </Link>
                 <Tippy
                     interactive={true}
                     placement="top-start"
@@ -83,12 +105,11 @@ function Header() {
                     </div>
                 </Tippy>
                 <div className={cx('action')}>
-                    <Button tran>
-                        <FontAwesomeIcon className={cx('icon-plus')} icon={faPlus} />
-                        <span>Upload</span>
+                    <Button tran leftIcon={<FontAwesomeIcon className={cx('icon-plus')} icon={faPlus} />}>
+                        Upload
                     </Button>
                     <Button primary>Log in</Button>
-                    <Menu items={MENU_ITEMS}>
+                    <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
                         <button className={cx('icon-header-right')}>
                             <FontAwesomeIcon className={cx('icon-header-menu')} icon={faEllipsisV} />
                         </button>
