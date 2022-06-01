@@ -99,6 +99,24 @@
     }
 }
 
+.action {
+    display: flex;
+    align-items: center;
+}
+
 .icon-plus {
     color: var(--default-color-text-primary);
+}
+
+.icon-header-right {
+    display: flex;
+    background-color: transparent;
+    margin-left: 25px;
+}
+
+.icon-header-menu {
+    width: 20px;
+    height: 20px;
+    font-size: 1.8rem;
+    cursor: pointer;
 }

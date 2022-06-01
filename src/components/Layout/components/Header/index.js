@@ -4,22 +4,45 @@ import images from '~/asset/images';
 import Button from '~/components/Button';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faPlus, faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import {
+    faCircleQuestion,
+    faCircleXmark,
+    faEllipsisV,
+    faKeyboard,
+    faLanguage,
+    faPlus,
+    faSearch,
+    faSpinner,
+} from '@fortawesome/free-solid-svg-icons';
 
 // import Tippy from '@tippyjs/react';
 import Tippy from '@tippyjs/react/headless'; // different import path!
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem/AccountItem';
+import Menu from '~/components/Popper/Menu';
 
 const cx = classNames.bind(styles);
 
+const MENU_ITEMS = [
+    {
+        icon: <FontAwesomeIcon icon={faLanguage} />,
+        title: 'English',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+        title: 'Feedback And Help',
+        to: '/feedback',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faKeyboard} />,
+        title: 'Keyboard Shortcuts',
+    },
+];
+
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
-    useEffect(() => {
-        setSearchResult([1, 2, 3, 4]);
-    }, []);
 
     const handleKeyDown = (e) => {
         // if (e.key === 'Enter') {
@@ -33,6 +56,8 @@ function Header() {
                 <img src={images.logo} alt="logo" />
                 <Tippy
                     interactive={true}
+                    placement="top-start"
+                    visible={searchResult.length > 0}
                     render={(attrs) => (
                         <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                             <PopperWrapper>
@@ -45,7 +70,6 @@ function Header() {
                             </PopperWrapper>
                         </div>
                     )}
-                    visible={searchResult.length > 0}
                 >
                     <div className={cx('search')}>
                         <input placeholder="Tìm kiếm tài khoản và video" onKeyDown={(e) => handleKeyDown(e)} />
@@ -64,6 +88,11 @@ function Header() {
                         <span>Upload</span>
                     </Button>
                     <Button primary>Log in</Button>
+                    <Menu items={MENU_ITEMS}>
+                        <button className={cx('icon-header-right')}>
+                            <FontAwesomeIcon className={cx('icon-header-menu')} icon={faEllipsisV} />
+                        </button>
+                    </Menu>
                 </div>
             </div>
         </header>
