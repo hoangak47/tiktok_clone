@@ -10,6 +10,7 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem/AccountItem';
 import { Search } from '~/components/Icons';
 import { useEffect, useRef, useState } from 'react';
+import { useDebounce } from '~/hooks';
 
 const cx = classNames.bind(styles);
 
@@ -18,6 +19,8 @@ function SearchFc() {
     const [inputValue, setInputValue] = useState('');
     const [showSearchResult, setShowSearchResult] = useState(true);
     const [loading, setLoading] = useState(false);
+
+    const debouncedValue = useDebounce(inputValue, 500);
 
     const inputRef = useRef(null);
 
@@ -28,12 +31,12 @@ function SearchFc() {
     };
 
     useEffect(() => {
-        if (!inputValue.trim()) {
+        if (!debouncedValue.trim()) {
             setSearchResult([]);
             return;
         }
         setLoading(true);
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(inputValue)}&type=less`)
+        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debouncedValue)}&type=less`)
             .then((res) => res.json())
             .then((res) => {
                 setSearchResult(res.data);
@@ -42,7 +45,7 @@ function SearchFc() {
             .catch((err) => {
                 setLoading(false);
             });
-    }, [inputValue]);
+    }, [debouncedValue]);
 
     const handleHideResult = () => {
         setShowSearchResult(false);
