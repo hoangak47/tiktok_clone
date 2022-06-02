@@ -17,6 +17,7 @@ function SearchFc() {
     const [searchResult, setSearchResult] = useState([]);
     const [inputValue, setInputValue] = useState('');
     const [showSearchResult, setShowSearchResult] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     const inputRef = useRef(null);
 
@@ -26,15 +27,22 @@ function SearchFc() {
         inputRef.current.focus();
     };
 
-    // useEffect(() => {
-    //     setSearchResult([1, 2, 3]);
-    // }, []);
-
-    const handleKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            setSearchResult([inputValue]);
+    useEffect(() => {
+        if (!inputValue.trim()) {
+            setSearchResult([]);
+            return;
         }
-    };
+        setLoading(true);
+        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(inputValue)}&type=less`)
+            .then((res) => res.json())
+            .then((res) => {
+                setSearchResult(res.data);
+                setLoading(false);
+            })
+            .catch((err) => {
+                setLoading(false);
+            });
+    }, [inputValue]);
 
     const handleHideResult = () => {
         setShowSearchResult(false);
@@ -49,11 +57,9 @@ function SearchFc() {
                 <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                     <PopperWrapper>
                         <h4 className={cx('search-title')}>Account</h4>
-                        <AccountItem />
-                        <AccountItem />
-                        <AccountItem />
-                        <AccountItem />
-                        <AccountItem />
+                        {searchResult.map((item, index) => (
+                            <AccountItem key={item.id} data={item} />
+                        ))}
                     </PopperWrapper>
                 </div>
             )}
@@ -65,17 +71,18 @@ function SearchFc() {
                     value={inputValue}
                     placeholder="Tìm kiếm tài khoản và video"
                     onChange={(e) => setInputValue(e.target.value)}
-                    onKeyDown={(e) => handleKeyDown(e)}
                     onFocus={() => setShowSearchResult(true)}
                 />
-                {!!inputValue && (
+                {!!inputValue && !loading && (
                     <button onClick={handleClear} className={cx('clear')}>
                         <FontAwesomeIcon icon={faCircleXmark} />
                     </button>
                 )}
-                {/* <button className={cx('loading')}>
-                    <FontAwesomeIcon icon={faSpinner} />
-                </button> */}
+                {loading && (
+                    <button className={cx('loading')}>
+                        <FontAwesomeIcon icon={faSpinner} />
+                    </button>
+                )}
                 <button className={cx('search-btn')}>
                     <Search />
                 </button>

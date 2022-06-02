@@ -123,7 +123,7 @@ function Header() {
                             <Menu items={userMenu}>
                                 <Image
                                     className={cx('user-avatar')}
-                                    src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/9366bed55819a1889d53ff3a508c766b~c5_300x300.webp?x-expires=1654135200&x-signature=gvgneCFh0BeYTD1g8jle%2Fu1KBL4%3D"
+                                    src="https://static.fullstack.edu.vn/static/media/f8-icon.7ad2b161d5e80c87e516.png"
                                     alt="avatar"
                                     fallback="https://static.fullstack.edu.vn/static/media/f8-icon.7ad2b161d5e80c87e516.png"
                                 />
