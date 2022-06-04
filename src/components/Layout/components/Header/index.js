@@ -13,6 +13,7 @@ import Menu from '~/components/Popper/Menu';
 import { Link } from 'react-router-dom';
 import { Coins, Feedback, Keyboard, Language, Logout, Mess, Notify, Settings, User } from '~/components/Icons';
 import Image from '~/components/Image';
+import routes from '~/config/routes';
 
 const cx = classNames.bind(styles);
 
@@ -39,7 +40,7 @@ const MENU_ITEMS = [
     {
         icon: <Feedback />,
         title: 'Feedback And Help',
-        to: '/feedback',
+        to: routes.feedback,
     },
     {
         icon: <Keyboard />,
@@ -81,7 +82,7 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <Link to="/">
+                <Link to={routes.home} className={cx('logo-link')}>
                     <img src={images.logo} alt="logo" />
                 </Link>
 
@@ -120,7 +121,7 @@ function Header() {
 
                     {currentUser ? (
                         <>
-                            <Menu items={userMenu}>
+                            <Menu items={userMenu} hideOnClick={false}>
                                 <Image
                                     className={cx('user-avatar')}
                                     src="https://static.fullstack.edu.vn/static/media/f8-icon.7ad2b161d5e80c87e516.png"

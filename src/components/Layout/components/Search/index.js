@@ -54,6 +54,13 @@ function SearchFc() {
         setShowSearchResult(false);
     };
 
+    const handleChange = (e) => {
+        const value = e.target.value;
+        if (!value.startsWith(' ')) {
+            setInputValue(value);
+        }
+    };
+
     return (
         <TippyHeadless
             interactive={true}
@@ -76,7 +83,7 @@ function SearchFc() {
                     ref={inputRef}
                     value={inputValue}
                     placeholder="Tìm kiếm tài khoản và video"
-                    onChange={(e) => setInputValue(e.target.value)}
+                    onChange={(e) => handleChange(e)}
                     onFocus={() => setShowSearchResult(true)}
                 />
                 {!!inputValue && !loading && (
@@ -89,7 +96,7 @@ function SearchFc() {
                         <FontAwesomeIcon icon={faSpinner} />
                     </button>
                 )}
-                <button className={cx('search-btn')}>
+                <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
                     <Search />
                 </button>
             </div>

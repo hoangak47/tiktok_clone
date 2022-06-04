@@ -20,6 +20,7 @@
 
     input {
         font-size: 1.6rem;
+        font-family: var(--font-family-primary);
         color: var(--default-color-text-primary);
         background-color: transparent;
         height: 100%;
@@ -66,6 +67,7 @@
     border-top-right-radius: var(--search-border-radius);
     border-bottom-right-radius: var(--search-border-radius);
     font-size: 1.8rem;
+    font-family: var(--font-family-primary);
     color: rgba(22, 24, 35, 0.34);
     position: relative;
     cursor: pointer;

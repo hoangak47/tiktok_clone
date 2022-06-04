@@ -9,6 +9,8 @@
     --default-layout-width: 1150px;
     --default-color-text-primary: #000;
     --default-color-text-secondary: #161832;
+
+    --font-family-primary: 'ProximaNova', sans-serif;
 }
 
 * {
@@ -22,7 +24,7 @@ html {
 }
 
 body {
-    font-family: 'ProximaNova', sans-serif;
+    font-family: var(--font-family-primary);
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeLegibility;
@@ -101,6 +103,6 @@ body {
     }
 
     .tippy-content {
-        padding: 8px 9px;
+        font-family: 'ProximaNova';
     }
 }
