@@ -39,6 +39,7 @@ function Menu({ children, items = [], hideOnClick = true, onChange = defaultFn }
     };
     return (
         <Tippy
+            // visible
             interactive={true}
             placement="top-start"
             delay={[0, 1000]}
@@ -55,7 +56,7 @@ function Menu({ children, items = [], hideOnClick = true, onChange = defaultFn }
                                 }}
                             />
                         )}
-                        {renderItems()}
+                        <div className={cx('menu-scroll')}> {renderItems()}</div>
                     </PopperWrapper>
                 </div>
             )}

@@ -1,3 +1,4 @@
 .wrapper {
-    width: 356px;
+    width: var(--default-sidebar-width);
+    position: fixed;
 }

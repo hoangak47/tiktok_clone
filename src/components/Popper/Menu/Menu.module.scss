@@ -7,6 +7,12 @@
     }
 }
 
+.menu-scroll {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: calc(var(--default-max-height-sticky) - 50px);
+}
+
 .menu-item {
     width: 100%;
     display: flex;

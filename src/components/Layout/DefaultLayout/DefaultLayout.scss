@@ -4,6 +4,7 @@
     align-items: center;
 }
 .container {
+    margin-top: var(--default-layout-header-height);
     width: var(--default-layout-width);
     padding: 0 20px;
     display: flex;
@@ -11,4 +12,5 @@
 
 .content {
     flex: 1;
+    margin-left: var(--default-sidebar-width);
 }
